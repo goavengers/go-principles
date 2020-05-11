@@ -1,4 +1,8 @@
-# Философия архитектуры ООП, SOLID-принципы, Dry, KISS и YAGNI
+<div align="center">
+  <img width="494" height="244" src="https://github.com/goavengers/go-principles/blob/master/img/solid-2x.png">
+  <h1>Философия архитектуры ООП, SOLID-принципы, Dry, KISS и YAGNI</h1>
+  <h5>Вместе мы разберемся!</h5>
+</div>
 
 ## SOLID
 
