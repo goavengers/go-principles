@@ -4,6 +4,15 @@
   <h5>Вместе мы разберемся!</h5>
 </div>
 
+## Содержание
+
+1. OOP (Object Oriented Programming)
+2. SOLID
+3. DRY - Don’t repeat yourself
+4. KISS (Keep it simple, stupid!)
+5. Avoid Creating a YAGNI (You aren’t going to need it)
+6. LOD (Law of Demeter)
+
 ## SOLID
 
 За этой аббревиатурой скрываются 5 базовых принципов ООП, предложенные __Робертом Мартином__ в его статье [«Принципы проектирования и шаблоны проектирования»](https://web.archive.org/web/20150906155800/http://www.objectmentor.com/resources/articles/Principles_and_Patterns.pdf). Следование их духу сделает код легко тестируемым, расширяемым, читаемым и поддерживаемым.
