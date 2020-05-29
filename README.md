@@ -6,12 +6,12 @@
 
 ## Содержание
 
-1. OOP (Object Oriented Programming)
-2. [SOLID](#solid)
-3. DRY - Don’t repeat yourself
-4. KISS (Keep it simple, stupid!)
-5. Avoid Creating a YAGNI (You aren’t going to need it)
-6. LOD (Law of Demeter)
+- [ ] OOP (Object Oriented Programming)
+- [x] [SOLID](#solid)
+- [ ] DRY - Don’t repeat yourself
+- [ ] KISS (Keep it simple, stupid!)
+- [ ] Avoid Creating a YAGNI (You aren’t going to need it)
+- [ ] LOD (Law of Demeter)
 
 ## <a name="solid"></a> SOLID
 
@@ -49,4 +49,8 @@
 - [ ] [Interface Segregation Principle (принцип разделения интерфейса)](./docs/solid/Interface%20Segregation%20Principle.md)
 - [ ] [Dependency Inversion Principle (принцип инверсии зависимостей)](./docs/solid/Dependency%20Inversion%20Principle.md)
 
-
+## <a name="solid"></a> Object Oriented Programming
+## <a name="solid"></a> DRY - Don’t repeat yourself
+## <a name="solid"></a> KISS (Keep it simple, stupid!)
+## <a name="solid"></a> Avoid Creating a YAGNI (You aren’t going to need it)
+## <a name="solid"></a> LOD (Law of Demeter)
