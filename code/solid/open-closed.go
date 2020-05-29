@@ -1,5 +1,0 @@
-package solid
-
-func OpenClosed() {
-
-}
