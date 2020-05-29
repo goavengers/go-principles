@@ -1,0 +1,1 @@
+### Dependency Inversion Principle (принцип инверсии зависимостей) 
