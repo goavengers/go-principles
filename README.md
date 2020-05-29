@@ -55,129 +55,117 @@
 
 > Система должна быть открыта для расширения и закрыта для модификации.
 
-В какой-то момент у нас уже есть правильно работающая система и для добавления нового функционала мы не модифицируем тот код, который уже есть, а добавляем новый.
-
-В каких-то случаях мы можем воспользоваться embedded типами.
-
-У нас есть базовый класс с устоявшейся функциональностью (структура с методами) и мы можем расширить его засчет embedding механизма в наследнике.
+Рассмотрим пример с животными, структура `Animal`:
 
 ```go
-package main
-
-import (
-	"fmt"
-)
-
-type A struct {
-}
-
-func (*A) ask() {
-	fmt.Println("Скажите, пожалуйста!")
-}
-
-type B struct {
-	*A
-}
-
-func (p *B) tell() {
-	fmt.Println("Конечно, конечно!")
-}
-
-func main() {
-	var b B
-	b.ask()
-	b.tell()
+type Animal struct {
+	name string
 }
 ```
 
-В каких-то случаях подойдет переопределение типов:
+Мы хотим перебрать список животных, каждое из которых представлено объектом класса Animal, и узнать о том, какие звуки они издают. 
+Представим, что мы решаем эту задачу с помощью функции `AnimalSounds`:
 
 ```go
-package main
+func AnimalSounds() {
+	animals := []Animal{
+		Animal{name: "lion"},
+		Animal{name: "mouse"},
+	}
 
-import "fmt"
-
-type N int64
-
-func (i N) print() {
-	fmt.Println(i)
-}
-
-func main() {
-	var k N = 1
-	k.print()
-}
-```
-
-Но с любым наследованием, как мне кажется, лучше обращаться с осторожностью. Если создать цепочку наследования из 15 классов, каждый из которых расширяет последующий, мы вроде бы и следуем OCP принципу, но код от этого не станет понятнее.
-
-Т.е. всегда в качестве проверки - декомпозиция, связанность модулей. Стала система понятнее или нет?
-
-На мой взгляд интереснее вариант на основе интерфейсов - есть постоянная часть, которая не изменяется (интерфейс), и различные имплементации (расширения) этого интерфейса, которые мы можем подключать.
-
-Uncle Bob в своей [статье](https://blog.cleancoder.com/uncle-bob/2014/05/12/TheOpenClosedPrinciple.html) указывает, что крайнее проявление такого подхода - это архитектура на основе плагинов.
-
-Тот же автор [приводит](https://drive.google.com/file/d/0BwhCYaYDn8EgN2M5MTkwM2EtNWFkZC00ZTI3LWFjZTUtNTFhZGZiYmUzODc1/view), в качестве примера OCP, отрисовку фигур:
-
-У нас есть метод который отрисовывает набор фигур
-
-```go
-func DrawAllShapes(shapes []Shape) {
-	for _, sh := range shapes {
-		sh.Draw()
+	for _, animal := range animals {
+		if animal.name == "lion" {
+			fmt.Println("roar")
+		} else if animal.name == "mouse" {
+			fmt.Println("squeak")
+		}
 	}
 }
 ```
 
-И интерфейс отрисовки
+Самая главная проблема такой архитектуры заключается в том, что функция определяет то, какой звук издаёт то или иное животное, анализируя конкретные объекты. 
+Функция `AnimalSounds` не соответствует принципу открытости-закрытости, так как, например, при появлении новых видов животных, нам, для того, чтобы с её помощью можно было бы узнавать звуки, издаваемые ими, придётся её изменить.
+
+
+Добавим в массив новый элемент:
 
 ```go
-type Shape interface {
-	Draw()
+func AnimalSounds() {
+	animals := []Animal{
+		Animal{name: "lion"},
+		Animal{name: "mouse"},
+
+        // Новый
+		Animal{name: "snake"},
+	}
+    
+    ...
 }
 ```
 
-Метод и интерфейс фиксированны, а расширять систему мы можем засчет добавления имплементаций этого интерфейса
+После этого нам придётся поменять код функции `AnimalSounds`:
 
 ```go
-package main
+func AnimalSounds() {
+	...
 
-import "fmt"
-
-type Shape interface {
-	Draw()
-}
-
-func DrawAllShapes(shapes []Shape) {
-	for _, sh := range shapes {
-		sh.Draw()
+	for _, animal := range animals {
+		if animal.name == "lion" {
+			fmt.Println("roar")
+		} else if animal.name == "mouse" {
+			fmt.Println("squeak")
+		} else if animal.name == "snake" {
+			fmt.Println("hiss")
+		}
 	}
 }
+```
 
-type Circle struct {
+Как видите, при добавлении в массив нового животного придётся дополнять код функции. 
+Пример это очень простой, но если подобная архитектура используется в реальном проекте, функцию придётся постоянно расширять, добавляя в неё новые выражения `if`.
+
+Как привести функцию `AnimalSounds` в соответствие с принципом открытости-закрытости? Например — так:
+
+```go
+type Animal interface {
+	MakeSound() string
 }
 
-func (p *Circle) Draw() {
-	fmt.Println("Draw cirle!")
+type Lion struct {}
+func (lion *Lion) MakeSound() string {
+	return "roar"
 }
 
-type Square struct {
+type Squirrel struct {}
+func (squirrel *Squirrel) MakeSound() string {
+	return "squeak"
 }
 
-func (p *Square) Draw() {
-	fmt.Println("Draw square!")
+type Snake struct {}
+func (snake *Snake) MakeSound() string {
+	return "hiss"
 }
 
-func main() {
-	shapes := []Shape{&Circle{}, &Square{}}
-	DrawAllShapes(shapes)
+func AnimalSounds() {
+	animals := []Animal{
+		&Lion{},
+		&Squirrel{},
+		&Snake{},
+	}
+
+	for _, animal := range animals {
+		fmt.Println(animal.MakeSound())
+	}
 }
 ```
 
-Декомпозируем мы систему на отдельные модули? Да.
-Стала система понятнее? На мой взгляд, да.
+Можно заметить, что у кадой структуры реализующий интерфейс `Animal` теперь есть метод `MakeSound`. 
+При таком подходе нужно, чтобы структуры, предназначенные для описания конкретных животных, реализовывали бы интерфейс Animal.
 
-Т.е. определяем в системе более постоянные части и отделяем их интерфейсом от более изменчивых.
+В результате у каждой стуктуры, описывающего животного, будет собственный метод `MakeSound`, а при переборе массива с животными в функции `AnimalSounds` достаточно будет вызвать этот метод для каждого элемента массива.
+
+Если теперь добавить в массив объект, описывающий новое животное, функцию `AnimalSounds` менять не придётся. 
+Мы привели её в соответствие с принципом открытости-закрытости.
 
 ### Liskov Substitution Principle (принцип подстановки Барбары Лисков)
 
