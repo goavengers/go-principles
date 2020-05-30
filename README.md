@@ -9,7 +9,7 @@
 - [ ] OOP (Object Oriented Programming)
 - [x] [SOLID](#solid)
 - [ ] DRY - Don’t repeat yourself
-- [ ] KISS (Keep it simple, stupid!)
+- [x] [KISS (Keep it simple, stupid!)](#kiss)
 - [ ] Avoid Creating a YAGNI (You aren’t going to need it)
 - [ ] LOD (Law of Demeter)
 
@@ -51,7 +51,7 @@
 
 ## <a name="solid"></a> Object Oriented Programming
 ## <a name="dry"></a> DRY - Don’t repeat yourself
-## <a name="solid"></a> KISS (Keep it simple, stupid!)
+## <a name="kiss"></a> KISS (Keep it simple, stupid!)
 
 > Принцип программирования KISS — делайте вещи проще
 
