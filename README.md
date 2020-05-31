@@ -10,7 +10,7 @@
 - [x] [SOLID](#solid)
 - [ ] DRY - Don’t repeat yourself
 - [x] [KISS (Keep it simple, stupid!)](#kiss)
-- [ ] Avoid Creating a YAGNI (You aren’t going to need it)
+- [x] [Avoid Creating a YAGNI (You aren’t going to need it)](#yagni)
 - [ ] LOD (Law of Demeter)
 
 ## <a name="solid"></a> SOLID
