@@ -51,7 +51,7 @@
 
 ## <a name="solid"></a> Object Oriented Programming
 ## <a name="dry"></a> DRY - Don’t repeat yourself
-## <a name="kiss"></a> KISS (Keep it simple, stupid!)
+## <a name="kiss"></a> KISS (Keep it simple, stupid! — Делайте вещи проще!)
 
 > Принцип программирования KISS — делайте вещи проще
 
