@@ -109,9 +109,9 @@ __KISS__ — это принцип проектирования и програ�
 
 ## <a name="ddd"></a> DDD
 
-- [x] [Value Object](./docs/ddd/Value Object.md)
-- [ ] [Domain Event](./docs/ddd/Domain Event.md)
-- [ ] [Domain Service](./docs/ddd/Domain Service.md)
+- [x] [Value Object](./docs/ddd/Value%20Object.md)
+- [ ] [Domain Event](./docs/ddd/Value%20Object.md)
+- [ ] [Domain Service](./docs/ddd/Domain%20Service.md)
 - [ ] [Aggregate](./docs/ddd/Aggregate.md)
 - [ ] [Entity](./docs/ddd/Entity.md)
 - [ ] [Module](./docs/ddd/Module.md)
