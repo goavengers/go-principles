@@ -12,6 +12,7 @@
 - [x] [KISS (Keep it simple, stupid!)](#kiss)
 - [x] [Avoid Creating a YAGNI (You aren’t going to need it)](#yagni)
 - [ ] LOD (Law of Demeter)
+- [ ] [DDD](#ddd) 
 
 ## <a name="solid"></a> SOLID
 
@@ -104,4 +105,14 @@ __KISS__ — это принцип проектирования и програ�
 
 Подход к реализации проектов строго по ТЗ верен с нескольких ракурсов. Заказчик не должен платить за то, что ему не надо, а продукт должен быть максимально сопровождаем и его качество не должно страдать от интеграции ненужных функций.
 
-## <a name="solid"></a> LOD (Law of Demeter)
+## <a name="lod"></a> LOD (Law of Demeter)
+
+## <a name="ddd"></a> DDD
+
+- [x] [Value Object](./docs/ddd/Value Object.md)
+- [ ] [Domain Event](./docs/ddd/Domain Event.md)
+- [ ] [Domain Service](./docs/ddd/Domain Service.md)
+- [ ] [Aggregate](./docs/ddd/Aggregate.md)
+- [ ] [Entity](./docs/ddd/Entity.md)
+- [ ] [Module](./docs/ddd/Module.md)
+
